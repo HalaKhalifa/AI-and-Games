@@ -14,7 +14,7 @@ A classic Snake game implemented in Lua 5.4 using the LOVE2D framework. The game
 2. Clone this repository:  
    ```bash
    git clone https://github.com/HalaKhalifa/AI-and-Games.git
-   cd snake_game
+   cd AI-and-Games/snake_game
    ```  
 3. Run the game:  
    ```bash
