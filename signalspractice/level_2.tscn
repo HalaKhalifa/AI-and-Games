@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://bp4vla4wlrq3q"]
+
+[ext_resource type="Script" uid="uid://c0qbd3iqk2cc4" path="res://level_2.gd" id="1_n7ypv"]
+[ext_resource type="Script" uid="uid://b8sqpcnwckd8x" path="res://player.gd" id="1_nmjpi"]
+[ext_resource type="Texture2D" uid="uid://cu8d1xmpxyjf3" path="res://icon.svg" id="2_xdadj"]
+[ext_resource type="Script" uid="uid://dyk0brydu4v46" path="res://coin.gd" id="3_xdadj"]
+[ext_resource type="Script" uid="uid://cg6y4w121ssc7" path="res://coin_2.gd" id="4_1y8me"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y8me"]
+size = Vector2(127, 129)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n7ypv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7ypv"]
+size = Vector2(39.5, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0s5r2"]
+size = Vector2(40, 40)
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_n7ypv")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(200, 285)
+scale = Vector2(2, 2)
+script = ExtResource("1_nmjpi")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_xdadj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_1y8me")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(-4, 601)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Ground"]
+offset_right = 1149.0
+offset_bottom = 43.0
+color = Color(2.11775e-06, 0.421149, 0.146238, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_n7ypv")
+
+[node name="Coin" type="Area2D" parent="."]
+position = Vector2(602, 489)
+script = ExtResource("3_xdadj")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Coin"]
+offset_right = 39.0
+offset_bottom = 40.0
+color = Color(1, 1, 0.294118, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin"]
+position = Vector2(19.25, 20)
+shape = SubResource("RectangleShape2D_n7ypv")
+
+[node name="Coin2" type="Area2D" parent="."]
+position = Vector2(734, 492)
+script = ExtResource("4_1y8me")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Coin2"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.81038, 0.396723, 0.999998, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin2"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_0s5r2")
+
+[connection signal="body_entered" from="Coin" to="Coin" method="_on_body_entered"]
