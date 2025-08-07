@@ -9,6 +9,7 @@ Each subfolder will contain a different project, activity, or experiment related
 
 ## Contents until now
 - 🐍 Snake Game (Lua + LOVE2D)
+- 👾 Video Game (GDScript + Godot)
 
 ## Getting Started
 Clone the repository:
