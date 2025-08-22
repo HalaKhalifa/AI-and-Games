@@ -1,3 +1,6 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+nobodywho/user-bge-m3-q8_0.gguf
+nobodywho/gemma-2-2b-it-Q4_K_M.gguf
+nobodywho/Builds
