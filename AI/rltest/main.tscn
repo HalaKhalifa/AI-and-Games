@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://cxlk6cq1vhyj"]
+
+[ext_resource type="Script" uid="uid://b4e6is1x42uf5" path="res://scrips/cube.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cw5dr6xgdwbyk" path="res://scrips/ai_controller_3d.gd" id="2_h2yge"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+emission_enabled = true
+emission = Color(0.835357, 0.216467, 1.92523e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+material = SubResource("StandardMaterial3D_0xm2m")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1bvp3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lquwl"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7mycd"]
+data = PackedVector3Array(-5, 0.05, 5, 5, 0.05, 5, -5, -0.05, 5, 5, 0.05, 5, 5, -0.05, 5, -5, -0.05, 5, 5, 0.05, -5, -5, 0.05, -5, 5, -0.05, -5, -5, 0.05, -5, -5, -0.05, -5, 5, -0.05, -5, 5, 0.05, 5, 5, 0.05, -5, 5, -0.05, 5, 5, 0.05, -5, 5, -0.05, -5, 5, -0.05, 5, -5, 0.05, -5, -5, 0.05, 5, -5, -0.05, -5, -5, 0.05, 5, -5, -0.05, 5, -5, -0.05, -5, 5, 0.05, 5, -5, 0.05, 5, 5, 0.05, -5, -5, 0.05, 5, -5, 0.05, -5, 5, 0.05, -5, -5, -0.05, 5, 5, -0.05, 5, -5, -0.05, -5, 5, -0.05, 5, 5, -0.05, -5, -5, -0.05, -5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_272bh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+emission_enabled = true
+emission = Color(1.1792e-05, 0.862689, 7.70092e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kek77"]
+material = SubResource("StandardMaterial3D_5vw27")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4c57u"]
+size = Vector3(10, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_efxa6"]
+size = Vector3(1, 1, 10)
+
+[node name="Main" type="Node3D"]
+
+[node name="cube" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83399, 0.170338, -1.6929)
+script = ExtResource("1_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cube"]
+mesh = SubResource("BoxMesh_h2yge")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cube"]
+shape = SubResource("SphereShape3D_1bvp3")
+
+[node name="AIController3D" type="Node3D" parent="cube"]
+script = ExtResource("2_h2yge")
+metadata/_custom_type_script = "uid://dxtlb4cjrfoov"
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_lquwl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7mycd")
+
+[node name="Target" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06814, -0.291922, -0.755751)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Target"]
+shape = SubResource("BoxShape3D_272bh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Target"]
+mesh = SubResource("BoxMesh_kek77")
+
+[node name="Wall" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.49893)
+shape = SubResource("BoxShape3D_4c57u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.50711, 0, 0)
+shape = SubResource("BoxShape3D_efxa6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.52244)
+shape = SubResource("BoxShape3D_4c57u")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53211, 0, 0)
+shape = SubResource("BoxShape3D_efxa6")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0513883, 2.18067, 7.02255)
+current = true
+
+[connection signal="body_entered" from="Target" to="cube" method="_on_target_body_entered"]
+[connection signal="body_entered" from="Wall" to="cube" method="_on_wall_body_entered"]

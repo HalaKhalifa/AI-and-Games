@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca0ckkr8higoq"]
+
+[ext_resource type="PackedScene" uid="uid://cxlk6cq1vhyj" path="res://main.tscn" id="1_v8hfh"]
+[ext_resource type="Script" uid="uid://ba00clwrn8rd8" path="res://addons/godot_rl_agents/sync.gd" id="2_fiyi6"]
+
+[node name="BatchEnv" type="Node"]
+
+[node name="Main" parent="." instance=ExtResource("1_v8hfh")]
+
+[node name="Main2" parent="." instance=ExtResource("1_v8hfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6828, 0, 0)
+
+[node name="Main3" parent="." instance=ExtResource("1_v8hfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.8081)
+
+[node name="Main4" parent="." instance=ExtResource("1_v8hfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6828, 0, 11.8081)
+
+[node name="Main5" parent="." instance=ExtResource("1_v8hfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6367, 0, 11.8081)
+
+[node name="Main6" parent="." instance=ExtResource("1_v8hfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3196, 0, 11.8081)
+
+[node name="Main7" parent="." instance=ExtResource("1_v8hfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6367, 0, 0.437338)
+
+[node name="Main8" parent="." instance=ExtResource("1_v8hfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3196, 0, 0.437338)
+
+[node name="Main9" parent="." instance=ExtResource("1_v8hfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6367, 0, 24.7825)
+
+[node name="Main10" parent="." instance=ExtResource("1_v8hfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3196, 0, 24.7825)
+
+[node name="Main11" parent="." instance=ExtResource("1_v8hfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.230438, 0, 24.7825)
+
+[node name="Main12" parent="." instance=ExtResource("1_v8hfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9133, 0, 24.7825)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7394, 11.053, 48.2834)
+current = true
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("2_fiyi6")
+speed_up = 4.0
+metadata/_custom_type_script = "uid://ba00clwrn8rd8"
